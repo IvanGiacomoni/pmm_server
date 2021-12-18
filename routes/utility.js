@@ -19,6 +19,11 @@ router.get('/', async (req,res) => {
 
 
 
+router.post('/sendEmail',async (req,res)=>{
+    console.log(req)
+    res.status(200).send("<?xml version='1.0'?><done>'Fatto'</done>")
+})
+
 
 
 module.exports = router
