@@ -92,4 +92,41 @@ router.get('/sendPrototype/:CustomerEmail/:CustomerName/:CustomerSurname/:custom
 
 
 
+
+router.get('/sendRequest/shipment/:CustomerEmail/:CustomerName/:CustomerSurname',async (req,res)=>{
+    var email=req.params.CustomerEmail
+    var name=req.params.CustomerName
+    var surname=req.params.CustomerSurname
+   
+
+    let transporter = nodemailer.createTransport({
+        host: "smtp.libero.it",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: "progetto_pmm@libero.it", // generated ethereal user
+          pass: "Progettopmm2022.", // generated ethereal password
+        },
+      });
+      
+      let info = await transporter.sendMail({
+        from: "progetto_pmm@libero.it", // sender address
+        to: email, // list of receivers
+        subject: "Order Info", // Subject line
+        text: "Dear "+ name+" "+ surname+", \n"+"What kind of shipment do you want? Shipment or in shop" , // plain text body
+
+      });
+
+      var resp=Math.floor(Math.random() * 2);
+
+      console.log(resp)
+      if(resp==0)
+        resp=false
+      else
+        resp=true
+
+    
+    res.status(200).send("<?xml version='1.0'?><response>"+resp+"</response>")
+})
+
 module.exports = router
