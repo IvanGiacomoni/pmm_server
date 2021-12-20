@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/IvanGiacomoni/pmm_server#readme",
   "dependencies": {
+    "body-parser": "^1.19.1",
+    "body-parser-xml": "^2.0.3",
     "config": "^3.3.6",
     "cors": "^2.8.5",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "nodemailer": "^6.7.2"
   }
 }
